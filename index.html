@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Aggressively suppress benign Vite WebSocket errors as early as possible
+      (function() {
+        const suppress = (e) => {
+          const msg = e.message || (e.reason && e.reason.message) || "";
+          if (msg.includes('WebSocket') || msg.includes('vite')) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            return true;
+          }
+          return false;
+        };
+        window.addEventListener('error', suppress, true);
+        window.addEventListener('unhandledrejection', suppress, true);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
